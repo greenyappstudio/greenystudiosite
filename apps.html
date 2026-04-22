@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Apps — Greeny App Studio</title>
+  <meta name="description" content="Explore all apps from Greeny App Studio: Greeny Block, Greeny Word Journey, Greeny Color, EasyMath Kids, and MyMemo." />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* ── Page Hero ── */
+    .page-hero {
+      padding: 60px 0 52px;
+      text-align: center;
+    }
+    .page-hero h1 { font-size: clamp(38px, 5vw, 64px); margin-bottom: 16px; }
+    .page-hero p { font-size: 18px; color: var(--text2); max-width: 560px; margin-inline: auto; }
+
+    /* ── App Card Full ── */
+    .app-card-full {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 32px;
+      overflow: hidden;
+      margin-bottom: 40px;
+      transition: border-color 0.3s var(--ease);
+    }
+
+    .app-card-full:hover { border-color: rgba(20,255,130,0.2); }
+
+    .app-card-banner {
+      height: 200px;
+      display: flex;
+      align-items: center;
+      padding: 0 44px;
+      gap: 28px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .app-card-banner::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.1) 60%, transparent 100%);
+    }
+
+    .app-banner-icon {
+      width: 96px; height: 96px;
+      border-radius: 24px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 48px;
+      background: rgba(0,0,0,0.4);
+      border: 1.5px solid rgba(255,255,255,0.15);
+      flex-shrink: 0;
+      position: relative; z-index: 1;
+      backdrop-filter: blur(8px);
+    }
+
+    .app-banner-text {
+      position: relative; z-index: 1;
+    }
+
+    .app-banner-text h2 {
+      font-size: 28px;
+      color: #fff;
+      margin-bottom: 8px;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+    }
+
+    .app-banner-text p {
+      font-size: 14px;
+      color: rgba(255,255,255,0.75);
+    }
+
+    .app-banner-emoji-bg {
+      position: absolute;
+      right: 40px;
+      bottom: -20px;
+      font-size: 160px;
+      opacity: 0.07;
+      z-index: 0;
+    }
+
+    /* App banners */
+    .ab-block  { background: linear-gradient(135deg, #0f0620 0%, #2d0e80 50%, #1a0840 100%); }
+    .ab-word   { background: linear-gradient(135deg, #060e20 0%, #0e2b80 50%, #091540 100%); }
+    .ab-color  { background: linear-gradient(135deg, #200610 0%, #801040 50%, #400820 100%); }
+    .ab-math   { background: linear-gradient(135deg, #061a08 0%, #0e6020 50%, #083010 100%); }
+    .ab-memo   { background: linear-gradient(135deg, #1a1806 0%, #665c0a 50%, #332e05 100%); }
+
+    /* App body */
+    .app-card-body {
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 0;
+    }
+
+    .app-card-info {
+      padding: 32px 36px;
+      border-right: 1px solid var(--border);
+    }
+
+    .app-card-info .desc {
+      font-size: 15px;
+      color: var(--text2);
+      line-height: 1.8;
+      margin-bottom: 24px;
+    }
+
+    .app-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 28px;
+    }
+
+    .app-features li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 14px;
+      color: var(--text2);
+    }
+
+    .app-features li::before {
+      content: '✓';
+      color: var(--g1);
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .app-tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .app-card-side {
+      padding: 32px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .store-group-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text3);
+      margin-bottom: 4px;
+    }
+
+    .store-btns { display: flex; flex-direction: column; gap: 10px; }
+
+    .store-btn-full {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 18px;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      transition: all 0.2s var(--ease);
+      color: var(--text);
+    }
+
+    .store-btn-full:hover {
+      background: rgba(20,255,130,0.07);
+      border-color: rgba(20,255,130,0.3);
+      transform: translateX(4px);
+    }
+
+    .store-btn-full .sbf-icon { font-size: 24px; }
+    .store-btn-full .sbf-text { flex: 1; }
+    .store-btn-full .sbf-text small { display: block; font-size: 11px; color: var(--text3); }
+    .store-btn-full .sbf-text span { font-size: 14px; font-weight: 600; }
+    .store-btn-full .sbf-arrow { color: var(--text3); font-size: 18px; }
+
+    .store-btn-full.disabled {
+      opacity: 0.4;
+      pointer-events: none;
+    }
+
+    .coming-soon-side {
+      background: rgba(255,201,77,0.06);
+      border: 1px dashed rgba(255,201,77,0.3);
+      border-radius: 16px;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .coming-soon-side .cs-icon { font-size: 32px; margin-bottom: 10px; }
+    .coming-soon-side p { font-size: 13px; color: var(--text3); }
+    .coming-soon-side strong { display: block; font-size: 15px; color: var(--amber); margin-bottom: 6px; }
+
+    /* ── Responsive ── */
+    @media (max-width: 780px) {
+      .app-card-body { grid-template-columns: 1fr; }
+      .app-card-info { border-right: none; border-bottom: 1px solid var(--border); }
+      .app-card-banner { height: 140px; }
+      .app-banner-emoji-bg { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <script src="js/shared.js"></script>
+  <script>injectNav('apps');</script>
+
+  <main>
+    <section class="page-hero">
+      <div class="wrap anim-fadeup">
+        <div class="eyebrow">✦ Our Apps</div>
+        <h1>Every app, <span class="gradient-text">made with love.</span></h1>
+        <p>Games, creativity tools, and learning apps — all designed to be bright, smooth, and genuinely enjoyable.</p>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section class="section">
+      <div class="wrap">
+
+        <!-- GREENY BLOCK -->
+        <div id="greeny-block" class="app-card-full anim-fadeup">
+          <div class="app-card-banner ab-block">
+            <div class="app-banner-icon">🧱</div>
+            <div class="app-banner-text">
+              <h2>Greeny Block</h2>
+              <p>Neon arcade block puzzle · iOS &amp; Android</p>
+              <div style="display:flex;gap:8px;margin-top:12px;">
+                <span class="tag tag-green">Featured</span>
+                <span class="tag tag-teal">Puzzle Game</span>
+              </div>
+            </div>
+            <div class="app-banner-emoji-bg">🧱</div>
+          </div>
+          <div class="app-card-body">
+            <div class="app-card-info">
+              <p class="desc">
+                Greeny Block is a dark neon arcade puzzle built for both quick sessions and deep play. Place falling blocks, clear lines, and watch your board light up with rainbow neon glass effects, animated textures (Bubble, Iron, Wood, Jelly, Candy, Star), and screen-filling celebration bursts every time you nail a combo.
+              </p>
+              <ul class="app-features">
+                <li>Animated block textures with neon glow effects and line-clear celebrations</li>
+                <li>Lucky Wheel with daily spins to earn gem rewards and power-ups</li>
+                <li>Global leaderboards with social sharing via screenshot cards</li>
+                <li>IAP gem packs — cosmetic only, never pay-to-win</li>
+                <li>Adaptive score display that never overflows, no matter how high you climb</li>
+              </ul>
+              <div class="app-tags">
+                <span class="tag tag-slate">Puzzle</span>
+                <span class="tag tag-slate">Arcade</span>
+                <span class="tag tag-slate">Neon</span>
+                <span class="tag tag-green">Free to Play</span>
+              </div>
+            </div>
+            <div class="app-card-side">
+              <div>
+                <div class="store-group-label">Download Now</div>
+                <div class="store-btns">
+                  <a class="store-btn-full" href="https://apps.apple.com/us/app/greeny-block/id6760625307" target="_blank">
+                    <span class="sbf-icon">🍎</span>
+                    <span class="sbf-text"><small>Download on the</small><span>App Store</span></span>
+                    <span class="sbf-arrow">→</span>
+                  </a>
+                  <a class="store-btn-full" href="https://play.google.com/store/apps/details?id=com.f2green.greenyblock" target="_blank">
+                    <span class="sbf-icon">▶</span>
+                    <span class="sbf-text"><small>Get it on</small><span>Google Play</span></span>
+                    <span class="sbf-arrow">→</span>
+                  </a>
+                </div>
+              </div>
+              <div style="background:rgba(20,255,130,0.05);border:1px solid rgba(20,255,130,0.15);border-radius:14px;padding:16px;">
+                <div style="font-size:12px;color:var(--text3);margin-bottom:4px;">App Store ID</div>
+                <div style="font-size:13px;font-family:monospace;color:var(--g1);">6760625307</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- GREENY WORD JOURNEY -->
+        <div id="greeny-word" class="app-card-full anim-fadeup anim-delay-1">
+          <div class="app-card-banner ab-word">
+            <div class="app-banner-icon">📖</div>
+            <div class="app-banner-text">
+              <h2>Greeny Word Journey</h2>
+              <p>Cozy word puzzle adventure · iOS &amp; Android</p>
+              <div style="display:flex;gap:8px;margin-top:12px;">
+                <span class="tag tag-green">Featured</span>
+                <span class="tag tag-blue">Word Game</span>
+              </div>
+            </div>
+            <div class="app-banner-emoji-bg">📖</div>
+          </div>
+          <div class="app-card-body">
+            <div class="app-card-info">
+              <p class="desc">
+                Spin the letter wheel, discover hidden words, and journey through hundreds of themed levels. Greeny Word Journey blends cozy word-hunt gameplay with daily check-in streaks, a Lucky Wheel, and genuine multilingual depth — supporting 10+ languages including Arabic, Hindi, Thai, and more.
+              </p>
+              <ul class="app-features">
+                <li>Letter-wheel crossword gameplay across hundreds of levels</li>
+                <li>Daily check-in system with 7-day milestone rewards and streak tracking</li>
+                <li>10+ languages: English, Malay, Indonesian, Arabic, Hindi, Chinese, Russian, Thai &amp; more</li>
+                <li>Lucky Wheel with daily spins, gem rewards, and spin history</li>
+                <li>World unlock animations with full-screen ring effects and sparkle particles</li>
+              </ul>
+              <div class="app-tags">
+                <span class="tag tag-slate">Word Game</span>
+                <span class="tag tag-slate">Puzzle</span>
+                <span class="tag tag-slate">Multilingual</span>
+                <span class="tag tag-green">Free to Play</span>
+              </div>
+            </div>
+            <div class="app-card-side">
+              <div>
+                <div class="store-group-label">Download Now</div>
+                <div class="store-btns">
+                  <a class="store-btn-full" href="https://apps.apple.com/us/app/greeny-word-journey/id6761458817" target="_blank">
+                    <span class="sbf-icon">🍎</span>
+                    <span class="sbf-text"><small>Download on the</small><span>App Store</span></span>
+                    <span class="sbf-arrow">→</span>
+                  </a>
+                  <a class="store-btn-full" href="https://play.google.com/store/apps/details?id=com.f2green.greeny_word_journey" target="_blank">
+                    <span class="sbf-icon">▶</span>
+                    <span class="sbf-text"><small>Get it on</small><span>Google Play</span></span>
+                    <span class="sbf-arrow">→</span>
+                  </a>
+                </div>
+              </div>
+              <div style="background:rgba(79,163,255,0.05);border:1px solid rgba(79,163,255,0.15);border-radius:14px;padding:16px;">
+                <div style="font-size:12px;color:var(--text3);margin-bottom:4px;">App Store ID</div>
+                <div style="font-size:13px;font-family:monospace;color:var(--blue);">6761458817</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- GREENY COLOR -->
+        <div id="greeny-color" class="app-card-full anim-fadeup anim-delay-2">
+          <div class="app-card-banner ab-color">
+            <div class="app-banner-icon">🎨</div>
+            <div class="app-banner-text">
+              <h2>Greeny Color</h2>
+              <p>Kids' creative coloring app · iOS &amp; Android</p>
+              <div style="display:flex;gap:8px;margin-top:12px;">
+                <span class="tag tag-teal">Kids Creative</span>
+              </div>
+            </div>
+            <div class="app-banner-emoji-bg">🎨</div>
+          </div>
+          <div class="app-card-body">
+            <div class="app-card-info">
+              <p class="desc">
+                A safe and joyful coloring experience for kids. Greeny Color features a library of playful illustrations ready to be filled with color, a friendly interface designed for small hands, and zero ads or inappropriate content — just pure creative fun.
+              </p>
+              <ul class="app-features">
+                <li>Curated playful illustration library suited for all ages</li>
+                <li>Simple, intuitive touch interface designed for children</li>
+                <li>Safe, ad-free environment with no in-app purchases to worry about</li>
+                <li>Bright, cheerful visual design that kids will love coming back to</li>
+              </ul>
+              <div class="app-tags">
+                <span class="tag tag-slate">Kids</span>
+                <span class="tag tag-slate">Creative</span>
+                <span class="tag tag-slate">Coloring</span>
+                <span class="tag tag-green">Free to Play</span>
+              </div>
+            </div>
+            <div class="app-card-side">
+              <div>
+                <div class="store-group-label">Download Now</div>
+                <div class="store-btns">
+                  <a class="store-btn-full" href="https://apps.apple.com/us/app/greeny-color/id6759993958" target="_blank">
+                    <span class="sbf-icon">🍎</span>
+                    <span class="sbf-text"><small>Download on the</small><span>App Store</span></span>
+                    <span class="sbf-arrow">→</span>
+                  </a>
+                  <a class="store-btn-full" href="https://play.google.com/store/apps/details?id=com.f2green.greenycolor" target="_blank">
+                    <span class="sbf-icon">▶</span>
+                    <span class="sbf-text"><small>Get it on</small><span>Google Play</span></span>
+                    <span class="sbf-arrow">→</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- EASYMATH KIDS -->
+        <div id="easymath" class="app-card-full anim-fadeup anim-delay-1">
+          <div class="app-card-banner ab-math">
+            <div class="app-banner-icon">🔢</div>
+            <div class="app-banner-text">
+              <h2>EasyMath Kids</h2>
+              <p>Fun educational math app · iOS &amp; Android</p>
+              <div style="display:flex;gap:8px;margin-top:12px;">
+                <span class="tag tag-green">Featured</span>
+                <span class="tag tag-teal">Kids Learning</span>
+              </div>
+            </div>
+            <div class="app-banner-emoji-bg">🔢</div>
+          </div>
+          <div class="app-card-body">
+            <div class="app-card-info">
+              <p class="desc">
+                EasyMath Kids turns math practice into a colourful adventure. Through interactive mini-games, cheerful characters, and progressive challenges, young learners build genuine number confidence in a fun, pressure-free environment.
+              </p>
+              <ul class="app-features">
+                <li>Age-appropriate math topics from counting to early multiplication</li>
+                <li>Interactive mini-games that make practice feel like play</li>
+                <li>Colourful, friendly visual design built for young learners</li>
+                <li>Progress tracking to celebrate every milestone along the journey</li>
+              </ul>
+              <div class="app-tags">
+                <span class="tag tag-slate">Education</span>
+                <span class="tag tag-slate">Kids</span>
+                <span class="tag tag-slate">Math</span>
+                <span class="tag tag-green">Free to Play</span>
+              </div>
+            </div>
+            <div class="app-card-side">
+              <div>
+                <div class="store-group-label">Download Now</div>
+                <div class="store-btns">
+                  <a class="store-btn-full" href="https://apps.apple.com/us/app/easymath-kids/id6759647782" target="_blank">
+                    <span class="sbf-icon">🍎</span>
+                    <span class="sbf-text"><small>Download on the</small><span>App Store</span></span>
+                    <span class="sbf-arrow">→</span>
+                  </a>
+                  <a class="store-btn-full" href="https://play.google.com/store/apps/details?id=com.f2green.easymathkids" target="_blank">
+                    <span class="sbf-icon">▶</span>
+                    <span class="sbf-text"><small>Get it on</small><span>Google Play</span></span>
+                    <span class="sbf-arrow">→</span>
+                  </a>
+                </div>
+              </div>
+              <div style="background:rgba(20,255,130,0.05);border:1px solid rgba(20,255,130,0.15);border-radius:14px;padding:16px;">
+                <div style="font-size:12px;color:var(--text3);margin-bottom:4px;">App Store ID</div>
+                <div style="font-size:13px;font-family:monospace;color:var(--g1);">6759647782</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- MYMEMO -->
+        <div id="mymemo" class="app-card-full anim-fadeup anim-delay-2">
+          <div class="app-card-banner ab-memo">
+            <div class="app-banner-icon">📓</div>
+            <div class="app-banner-text">
+              <h2>MyMemo App</h2>
+              <p>Notes, reminders &amp; daily companion · Coming Soon</p>
+              <div style="display:flex;gap:8px;margin-top:12px;">
+                <span class="tag tag-amber">Coming Soon</span>
+                <span class="tag tag-slate">Productivity</span>
+              </div>
+            </div>
+            <div class="app-banner-emoji-bg">📓</div>
+          </div>
+          <div class="app-card-body">
+            <div class="app-card-info">
+              <p class="desc">
+                A calm, beautiful space for your daily life. MyMemo will let you capture quick notes, save important links, set reminders, and organise everyday thoughts in one clean and friendly app — with the signature Greeny polish you already know.
+              </p>
+              <ul class="app-features">
+                <li>Quick note capture with calm, clean interface</li>
+                <li>Reminder and link-saving built right in</li>
+                <li>Greeny-signature visual design and smooth animations</li>
+                <li>Available on iOS and Android at launch</li>
+              </ul>
+              <div class="app-tags">
+                <span class="tag tag-slate">Productivity</span>
+                <span class="tag tag-slate">Notes</span>
+                <span class="tag tag-amber">Coming Soon</span>
+              </div>
+            </div>
+            <div class="app-card-side">
+              <div class="coming-soon-side">
+                <div class="cs-icon">🚀</div>
+                <strong>In Development</strong>
+                <p>MyMemo is currently being built. Stay tuned for launch on both App Store and Google Play.</p>
+              </div>
+              <a href="mailto:support@greenystudio.site" class="store-btn-full" style="justify-content:center;">
+                <span class="sbf-icon">✉</span>
+                <span class="sbf-text" style="flex:unset;"><span>Get Notified at Launch</span></span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <script>injectFooter();</script>
+</body>
+</html>

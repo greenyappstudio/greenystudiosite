@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Greeny App Studio — Playful Mobile Apps</title>
+  <meta name="description" content="Greeny App Studio creates playful, polished mobile games and apps. Discover Greeny Block, Greeny Word Journey, Greeny Color, EasyMath Kids and more." />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* ── Hero ── */
+    .hero {
+      padding: 80px 0 60px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      background: rgba(20,255,130,0.06);
+      border: 1px solid rgba(20,255,130,0.18);
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--g1);
+      margin-bottom: 28px;
+    }
+
+    .hero-badge::before {
+      content: '';
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--g1);
+      box-shadow: 0 0 8px var(--g1);
+      animation: pulse-glow 2s infinite;
+    }
+
+    .hero h1 {
+      font-size: clamp(44px, 6vw, 78px);
+      letter-spacing: -0.04em;
+      line-height: 1.0;
+      margin-bottom: 24px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 36px;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 32px;
+      margin-top: 44px;
+      padding-top: 36px;
+      border-top: 1px solid var(--border);
+      flex-wrap: wrap;
+    }
+
+    .stat-item { flex: 1; min-width: 90px; }
+    .stat-num {
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      background: linear-gradient(135deg, var(--g1), var(--teal));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .stat-label { font-size: 13px; color: var(--text3); margin-top: 4px; }
+
+    /* ── Hero Visual ── */
+    .hero-visual {
+      position: relative;
+    }
+
+    .phone-mockup {
+      position: relative;
+      z-index: 2;
+    }
+
+    .phone-frame {
+      width: 280px;
+      margin: 0 auto;
+      background: #0a1f15;
+      border-radius: 44px;
+      border: 2px solid rgba(20,255,130,0.25);
+      padding: 20px 16px;
+      box-shadow:
+        0 0 0 1px rgba(20,255,130,0.08),
+        0 40px 100px rgba(0,0,0,0.6),
+        0 0 60px rgba(20,255,130,0.12);
+      animation: float 4s ease-in-out infinite;
+    }
+
+    .phone-notch {
+      width: 80px; height: 28px;
+      background: #040d0a;
+      border-radius: 999px;
+      margin: 0 auto 16px;
+    }
+
+    .phone-screen {
+      background: linear-gradient(160deg, #071510, #040d0a);
+      border-radius: 28px;
+      padding: 20px;
+      min-height: 380px;
+      overflow: hidden;
+    }
+
+    .phone-app-header {
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--g1);
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .phone-app-title {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 20px;
+    }
+
+    .phone-app-tiles {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .phone-tile {
+      border-radius: 18px;
+      padding: 14px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .phone-tile-icon { font-size: 24px; }
+    .phone-tile-name { font-size: 11px; font-weight: 700; }
+    .phone-tile-type { font-size: 9px; opacity: 0.5; }
+
+    .tile-block  { background: linear-gradient(135deg, #1a0a3d, #2d1060); border: 1px solid rgba(120,60,255,0.3); }
+    .tile-word   { background: linear-gradient(135deg, #0a1a3d, #0f3060); border: 1px solid rgba(60,120,255,0.3); }
+    .tile-color  { background: linear-gradient(135deg, #3d0a1a, #601030); border: 1px solid rgba(255,60,120,0.3); }
+    .tile-math   { background: linear-gradient(135deg, #1a3d0a, #306010); border: 1px solid rgba(120,255,60,0.3); }
+
+    .floating-cards {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .float-card {
+      position: absolute;
+      background: rgba(4,13,10,0.85);
+      border: 1px solid var(--border2);
+      border-radius: 16px;
+      padding: 12px 16px;
+      font-size: 12px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      backdrop-filter: blur(12px);
+      white-space: nowrap;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    }
+
+    .float-card--rating { top: 20%; left: -80px; animation: float 3.5s 0.5s ease-in-out infinite; }
+    .float-card--dl { bottom: 25%; right: -60px; animation: float 4.2s 1s ease-in-out infinite; }
+    .float-card .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--g1); box-shadow: 0 0 8px var(--g1); }
+
+    /* ── Why Us ── */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .feature-card {
+      padding: 32px 28px;
+      border-radius: var(--r-lg);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      transition: all 0.3s var(--ease);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(20,255,130,0.4), transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .feature-card:hover { border-color: rgba(20,255,130,0.2); transform: translateY(-4px); }
+    .feature-card:hover::before { opacity: 1; }
+
+    .feature-icon {
+      width: 52px; height: 52px;
+      border-radius: 16px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    .feature-card h3 { font-size: 18px; margin-bottom: 10px; }
+    .feature-card p { font-size: 14px; color: var(--text2); line-height: 1.7; }
+
+    /* ── App Showcase ── */
+    .apps-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .app-mini-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      transition: all 0.3s var(--ease);
+      cursor: pointer;
+    }
+
+    .app-mini-card:hover {
+      border-color: rgba(20,255,130,0.3);
+      transform: translateY(-6px);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 30px rgba(20,255,130,0.08);
+    }
+
+    .app-mini-banner {
+      height: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 42px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .app-mini-banner::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(0deg, rgba(0,0,0,0.5), transparent);
+    }
+
+    .banner-block  { background: linear-gradient(135deg, #1a0a40, #3b0f8c, #1a0a40); }
+    .banner-word   { background: linear-gradient(135deg, #0a2040, #0f4080, #0a2040); }
+    .banner-color  { background: linear-gradient(135deg, #400a20, #801840, #400a20); }
+    .banner-math   { background: linear-gradient(135deg, #0a4020, #186040, #0a4020); }
+    .banner-memo   { background: linear-gradient(135deg, #40400a, #706010, #40400a); }
+
+    .app-mini-body { padding: 18px; }
+    .app-mini-body h3 { font-size: 16px; margin-bottom: 6px; }
+    .app-mini-body p { font-size: 13px; color: var(--text2); margin-bottom: 14px; }
+
+    .app-mini-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .status-pill {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 999px;
+    }
+    .status-live { background: rgba(20,255,130,0.1); color: var(--g1); border: 1px solid rgba(20,255,130,0.25); }
+    .status-soon { background: rgba(255,201,77,0.1); color: var(--amber); border: 1px solid rgba(255,201,77,0.25); }
+
+    .view-link { font-size: 13px; color: var(--text3); transition: color 0.2s; }
+    .app-mini-card:hover .view-link { color: var(--g1); }
+
+    /* ── CTA ── */
+    .cta-block {
+      background: linear-gradient(135deg, rgba(20,255,130,0.06), rgba(0,229,200,0.04));
+      border: 1px solid rgba(20,255,130,0.15);
+      border-radius: var(--r-xl);
+      padding: 72px 60px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-block::before {
+      content: '';
+      position: absolute;
+      top: -50%; left: -50%;
+      width: 200%; height: 200%;
+      background: radial-gradient(ellipse at center, rgba(20,255,130,0.06), transparent 60%);
+      pointer-events: none;
+    }
+
+    .cta-block h2 { font-size: clamp(28px, 4vw, 46px); margin-bottom: 16px; }
+    .cta-block p { font-size: 16px; color: var(--text2); margin-bottom: 36px; max-width: 560px; margin-left: auto; margin-right: auto; }
+    .cta-buttons { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+    /* ── Responsive ── */
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero-visual { display: none; }
+      .features-grid { grid-template-columns: 1fr 1fr; }
+      .apps-row { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 600px) {
+      .features-grid { grid-template-columns: 1fr; }
+      .apps-row { grid-template-columns: 1fr; }
+      .cta-block { padding: 40px 24px; }
+    }
+  </style>
+</head>
+<body>
+  <script src="js/shared.js"></script>
+  <script>injectNav('home');</script>
+
+  <main>
+    <!-- ── HERO ── -->
+    <section class="section" style="padding-top: 40px;">
+      <div class="wrap">
+        <div class="hero">
+          <div class="anim-fadeup">
+            <div class="hero-badge">🌿 4 Apps Available Now</div>
+            <h1>Apps that feel <span class="gradient-text">alive</span> in your hands.</h1>
+            <p class="lead">
+              Greeny App Studio crafts mobile games and apps bursting with personality — from neon block puzzles to cozy word adventures and colorful kids' games.
+            </p>
+            <div class="hero-buttons">
+              <a href="apps.html" class="btn btn-primary btn-lg">Browse All Apps →</a>
+              <a href="#why" class="btn btn-ghost btn-lg">Why Greeny?</a>
+            </div>
+            <div class="hero-stats">
+              <div class="stat-item">
+                <div class="stat-num">5</div>
+                <div class="stat-label">Apps Built</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-num">2+</div>
+                <div class="stat-label">Platforms</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-num">10+</div>
+                <div class="stat-label">Languages</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-num">100%</div>
+                <div class="stat-label">Family Safe</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-visual anim-fadeup anim-delay-3">
+            <div class="floating-cards">
+              <div class="float-card float-card--rating">⭐ 4.8 · App Store Rating</div>
+              <div class="float-card float-card--dl">
+                <div class="dot"></div>
+                Available on iOS &amp; Android
+              </div>
+            </div>
+            <div class="phone-mockup">
+              <div class="phone-frame">
+                <div class="phone-notch"></div>
+                <div class="phone-screen">
+                  <div class="phone-app-header">Greeny App Studio</div>
+                  <div class="phone-app-title">Your next favourite app is here 🌿</div>
+                  <div class="phone-app-tiles">
+                    <div class="phone-tile tile-block">
+                      <div class="phone-tile-icon">🧱</div>
+                      <div class="phone-tile-name">Greeny Block</div>
+                      <div class="phone-tile-type">Puzzle</div>
+                    </div>
+                    <div class="phone-tile tile-word">
+                      <div class="phone-tile-icon">📖</div>
+                      <div class="phone-tile-name">Word Journey</div>
+                      <div class="phone-tile-type">Word Game</div>
+                    </div>
+                    <div class="phone-tile tile-color">
+                      <div class="phone-tile-icon">🎨</div>
+                      <div class="phone-tile-name">Greeny Color</div>
+                      <div class="phone-tile-type">Creative</div>
+                    </div>
+                    <div class="phone-tile tile-math">
+                      <div class="phone-tile-icon">🔢</div>
+                      <div class="phone-tile-name">EasyMath Kids</div>
+                      <div class="phone-tile-type">Education</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ── WHY US ── -->
+    <section id="why" class="section">
+      <div class="wrap">
+        <div style="text-align:center;margin-bottom:52px;" class="anim-fadeup">
+          <div class="eyebrow">✦ Why Greeny Studio</div>
+          <h2 class="section-title">Built different. <span class="gradient-text">Felt differently.</span></h2>
+          <p class="lead" style="margin-inline:auto;text-align:center;">Every app we ship is crafted with obsessive attention to feel, flow, and finish.</p>
+        </div>
+        <div class="features-grid">
+          <div class="feature-card anim-fadeup anim-delay-1">
+            <div class="feature-icon" style="background:rgba(20,255,130,0.1);">🛡️</div>
+            <h3>Family-Safe by Design</h3>
+            <p>No hidden ads, no dark patterns. Every app is built to be safe, transparent, and enjoyable for users of all ages.</p>
+          </div>
+          <div class="feature-card anim-fadeup anim-delay-2">
+            <div class="feature-icon" style="background:rgba(0,229,200,0.1);">✨</div>
+            <h3>Polished to the Pixel</h3>
+            <p>Smooth animations, satisfying interactions, and clean visuals — every detail is refined before it ships to your device.</p>
+          </div>
+          <div class="feature-card anim-fadeup anim-delay-3">
+            <div class="feature-icon" style="background:rgba(79,163,255,0.1);">🌍</div>
+            <h3>10+ Languages Supported</h3>
+            <p>From English to Arabic, Hindi, Thai, and beyond — our apps speak your language and feel native on every device.</p>
+          </div>
+          <div class="feature-card anim-fadeup anim-delay-1">
+            <div class="feature-icon" style="background:rgba(255,201,77,0.1);">📱</div>
+            <h3>iOS &amp; Android Ready</h3>
+            <p>Every title is available on both major platforms, optimized for performance on phones of all screen sizes and specs.</p>
+          </div>
+          <div class="feature-card anim-fadeup anim-delay-2">
+            <div class="feature-icon" style="background:rgba(255,107,157,0.1);">🎁</div>
+            <h3>Free to Start</h3>
+            <p>Jump in and play immediately. No paywalls at the door — unlock extras only if you love the experience enough to want more.</p>
+          </div>
+          <div class="feature-card anim-fadeup anim-delay-3">
+            <div class="feature-icon" style="background:rgba(20,255,130,0.1);">🚀</div>
+            <h3>Always Growing</h3>
+            <p>Regular updates, new content, and fresh apps in the pipeline. Greeny Studio is a living, growing studio with more coming.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ── APPS PREVIEW ── -->
+    <section class="section">
+      <div class="wrap">
+        <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:40px;flex-wrap:wrap;gap:16px;" class="anim-fadeup">
+          <div>
+            <div class="eyebrow">✦ Our Apps</div>
+            <h2 class="section-title">Your next <span class="gradient-text">obsession</span> awaits.</h2>
+          </div>
+          <a href="apps.html" class="btn btn-ghost">View All Apps →</a>
+        </div>
+
+        <div class="apps-row">
+          <a href="apps.html#greeny-block" class="app-mini-card anim-fadeup anim-delay-1">
+            <div class="app-mini-banner banner-block">🧱</div>
+            <div class="app-mini-body">
+              <h3>Greeny Block</h3>
+              <p>Neon block puzzle with combos, animated textures, and leaderboards.</p>
+              <div class="app-mini-footer">
+                <span class="status-pill status-live">● Live</span>
+                <span class="view-link">View App →</span>
+              </div>
+            </div>
+          </a>
+          <a href="apps.html#greeny-word" class="app-mini-card anim-fadeup anim-delay-2">
+            <div class="app-mini-banner banner-word">📖</div>
+            <div class="app-mini-body">
+              <h3>Greeny Word Journey</h3>
+              <p>Cozy word puzzle adventure. Daily streaks, 10+ languages, Lucky Wheel.</p>
+              <div class="app-mini-footer">
+                <span class="status-pill status-live">● Live</span>
+                <span class="view-link">View App →</span>
+              </div>
+            </div>
+          </a>
+          <a href="apps.html#greeny-color" class="app-mini-card anim-fadeup anim-delay-3">
+            <div class="app-mini-banner banner-color">🎨</div>
+            <div class="app-mini-body">
+              <h3>Greeny Color</h3>
+              <p>Relaxing kids' coloring app with playful illustrations and friendly designs.</p>
+              <div class="app-mini-footer">
+                <span class="status-pill status-live">● Live</span>
+                <span class="view-link">View App →</span>
+              </div>
+            </div>
+          </a>
+          <a href="apps.html#easymath" class="app-mini-card anim-fadeup anim-delay-1">
+            <div class="app-mini-banner banner-math">🔢</div>
+            <div class="app-mini-body">
+              <h3>EasyMath Kids</h3>
+              <p>Interactive math adventures for young learners with playful mini-games.</p>
+              <div class="app-mini-footer">
+                <span class="status-pill status-live">● Live</span>
+                <span class="view-link">View App →</span>
+              </div>
+            </div>
+          </a>
+          <a href="apps.html#mymemo" class="app-mini-card anim-fadeup anim-delay-2">
+            <div class="app-mini-banner banner-memo">📓</div>
+            <div class="app-mini-body">
+              <h3>MyMemo App</h3>
+              <p>Your calm, beautiful note-taking and daily memo companion. Coming soon.</p>
+              <div class="app-mini-footer">
+                <span class="status-pill status-soon">◎ Coming Soon</span>
+                <span class="view-link">Learn More →</span>
+              </div>
+            </div>
+          </a>
+          <a href="apps.html" class="app-mini-card anim-fadeup anim-delay-3" style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:180px;text-align:center;gap:12px;">
+            <div style="font-size:32px;">🌿</div>
+            <div style="font-size:16px;font-weight:700;">More Coming Soon</div>
+            <div style="font-size:13px;color:var(--text3);">Greeny Studio keeps building</div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── CTA ── -->
+    <section class="section-sm">
+      <div class="wrap">
+        <div class="cta-block anim-fadeup">
+          <div class="eyebrow" style="margin-bottom:24px;">✦ Download Today</div>
+          <h2>Ready to find your next <span class="gradient-text">favourite app?</span></h2>
+          <p>Every Greeny app is free to download. Bright, polished, and made with real care — available on App Store and Google Play.</p>
+          <div class="cta-buttons">
+            <a href="apps.html" class="btn btn-primary btn-lg">Explore All Apps →</a>
+            <a href="mailto:support@greenystudio.site" class="btn btn-ghost btn-lg">✉ Contact the Studio</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>injectFooter();</script>
+</body>
+</html>
