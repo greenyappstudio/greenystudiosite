@@ -52,14 +52,20 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 32px;
-      font-weight: 700;
       background: rgba(0,0,0,0.4);
       border: 1.5px solid rgba(255,255,255,0.15);
       flex-shrink: 0;
       position: relative;
       z-index: 1;
       backdrop-filter: blur(8px);
+      overflow: hidden;
+    }
+
+    .app-banner-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
 
     .app-banner-text {
@@ -212,7 +218,7 @@
       <div class="wrap">
         <div id="greeny-block" class="app-card-full anim-fadeup">
           <div class="app-card-banner ab-block">
-            <div class="app-banner-icon">GB</div>
+            <div class="app-banner-icon"><img src="images/greenyblock.png" alt="Greeny Block icon" /></div>
             <div class="app-banner-text">
               <h2>Greeny Block</h2>
               <p>Neon arcade block puzzle - iOS and Android</p>
@@ -268,7 +274,7 @@
 
         <div id="greeny-word" class="app-card-full anim-fadeup anim-delay-1">
           <div class="app-card-banner ab-word">
-            <div class="app-banner-icon">GW</div>
+            <div class="app-banner-icon"><img src="images/greenywordjourney.png" alt="Greeny Word Journey icon" /></div>
             <div class="app-banner-text">
               <h2>Greeny Word Journey</h2>
               <p>Cozy word puzzle adventure - iOS and Android</p>
@@ -324,7 +330,7 @@
 
         <div id="greeny-color" class="app-card-full anim-fadeup anim-delay-2">
           <div class="app-card-banner ab-color">
-            <div class="app-banner-icon">GC</div>
+            <div class="app-banner-icon"><img src="images/greenycolor.png" alt="Greeny Color icon" /></div>
             <div class="app-banner-text">
               <h2>Greeny Color</h2>
               <p>Kids creative coloring app - iOS and Android</p>
@@ -374,7 +380,7 @@
 
         <div id="easymath" class="app-card-full anim-fadeup anim-delay-1">
           <div class="app-card-banner ab-math">
-            <div class="app-banner-icon">EM</div>
+            <div class="app-banner-icon"><img src="images/easymath.png" alt="EasyMath Kids icon" /></div>
             <div class="app-banner-text">
               <h2>EasyMath Kids</h2>
               <p>Fun educational math app - iOS and Android</p>
@@ -429,7 +435,7 @@
 
         <div id="clipmy" class="app-card-full anim-fadeup anim-delay-2">
           <div class="app-card-banner ab-memo">
-            <div class="app-banner-icon">CM</div>
+            <div class="app-banner-icon"><img src="images/ClipMy.png" alt="ClipMy icon" /></div>
             <div class="app-banner-text">
               <h2>ClipMy</h2>
               <p>Clip saving and organization app - iOS and Android</p>

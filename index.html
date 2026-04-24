@@ -146,7 +146,19 @@
       gap: 6px;
     }
 
-    .phone-tile-icon { font-size: 18px; font-weight: 700; }
+    .phone-tile-icon {
+      width: 30px;
+      height: 30px;
+      border-radius: 9px;
+      overflow: hidden;
+      display: block;
+    }
+    .phone-tile-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
     .phone-tile-name { font-size: 11px; font-weight: 700; }
     .phone-tile-type { font-size: 9px; opacity: 0.5; }
 
@@ -253,10 +265,17 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 28px;
-      font-weight: 700;
       position: relative;
       overflow: hidden;
+    }
+
+    .app-mini-banner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      position: relative;
+      z-index: 1;
     }
 
     .app-mini-banner::after {
@@ -394,22 +413,22 @@
                   <div class="phone-app-title">Your next favorite app is here</div>
                   <div class="phone-app-tiles">
                     <div class="phone-tile tile-block">
-                      <div class="phone-tile-icon">GB</div>
+                      <div class="phone-tile-icon"><img src="images/greenyblock.png" alt="Greeny Block icon" /></div>
                       <div class="phone-tile-name">Greeny Block</div>
                       <div class="phone-tile-type">Puzzle</div>
                     </div>
                     <div class="phone-tile tile-word">
-                      <div class="phone-tile-icon">GW</div>
+                      <div class="phone-tile-icon"><img src="images/greenywordjourney.png" alt="Greeny Word Journey icon" /></div>
                       <div class="phone-tile-name">Word Journey</div>
                       <div class="phone-tile-type">Word Game</div>
                     </div>
                     <div class="phone-tile tile-color">
-                      <div class="phone-tile-icon">GC</div>
+                      <div class="phone-tile-icon"><img src="images/greenycolor.png" alt="Greeny Color icon" /></div>
                       <div class="phone-tile-name">Greeny Color</div>
                       <div class="phone-tile-type">Creative</div>
                     </div>
                     <div class="phone-tile tile-math">
-                      <div class="phone-tile-icon">EM</div>
+                      <div class="phone-tile-icon"><img src="images/easymath.png" alt="EasyMath Kids icon" /></div>
                       <div class="phone-tile-name">EasyMath Kids</div>
                       <div class="phone-tile-type">Education</div>
                     </div>
@@ -480,7 +499,7 @@
 
         <div class="apps-row">
           <a href="apps.html#greeny-block" class="app-mini-card anim-fadeup anim-delay-1">
-            <div class="app-mini-banner banner-block">GB</div>
+            <div class="app-mini-banner banner-block"><img src="images/greenyblock.png" alt="Greeny Block icon" /></div>
             <div class="app-mini-body">
               <h3>Greeny Block</h3>
               <p>Neon block puzzle with combos, animated textures, and leaderboards.</p>
@@ -491,7 +510,7 @@
             </div>
           </a>
           <a href="apps.html#greeny-word" class="app-mini-card anim-fadeup anim-delay-2">
-            <div class="app-mini-banner banner-word">GW</div>
+            <div class="app-mini-banner banner-word"><img src="images/greenywordjourney.png" alt="Greeny Word Journey icon" /></div>
             <div class="app-mini-body">
               <h3>Greeny Word Journey</h3>
               <p>Cozy word puzzle adventure with daily streaks, 10+ languages, and a Lucky Wheel.</p>
@@ -502,7 +521,7 @@
             </div>
           </a>
           <a href="apps.html#greeny-color" class="app-mini-card anim-fadeup anim-delay-3">
-            <div class="app-mini-banner banner-color">GC</div>
+            <div class="app-mini-banner banner-color"><img src="images/greenycolor.png" alt="Greeny Color icon" /></div>
             <div class="app-mini-body">
               <h3>Greeny Color</h3>
               <p>Relaxing kids coloring app with playful illustrations and friendly designs.</p>
@@ -513,7 +532,7 @@
             </div>
           </a>
           <a href="apps.html#easymath" class="app-mini-card anim-fadeup anim-delay-1">
-            <div class="app-mini-banner banner-math">EM</div>
+            <div class="app-mini-banner banner-math"><img src="images/easymath.png" alt="EasyMath Kids icon" /></div>
             <div class="app-mini-body">
               <h3>EasyMath Kids</h3>
               <p>Interactive math adventures for young learners with playful mini-games.</p>
@@ -524,7 +543,7 @@
             </div>
           </a>
           <a href="apps.html#clipmy" class="app-mini-card anim-fadeup anim-delay-2">
-            <div class="app-mini-banner banner-memo">CM</div>
+            <div class="app-mini-banner banner-memo"><img src="images/ClipMy.png" alt="ClipMy icon" /></div>
             <div class="app-mini-body">
               <h3>ClipMy</h3>
               <p>A simple tool to collect, organize, and keep your favorite clips in one place.</p>
