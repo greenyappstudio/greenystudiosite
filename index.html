@@ -147,17 +147,19 @@
     }
 
     .phone-tile-icon {
-      width: 30px;
-      height: 30px;
-      border-radius: 9px;
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
       overflow: hidden;
       display: block;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
     }
     .phone-tile-icon img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;
       display: block;
+      background: rgba(255,255,255,0.06);
     }
     .phone-tile-name { font-size: 11px; font-weight: 700; }
     .phone-tile-type { font-size: 9px; opacity: 0.5; }
@@ -270,12 +272,13 @@
     }
 
     .app-mini-banner img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+      width: 72px;
+      height: 72px;
+      object-fit: contain;
       display: block;
       position: relative;
       z-index: 1;
+      filter: drop-shadow(0 12px 24px rgba(0,0,0,0.35));
     }
 
     .app-mini-banner::after {
