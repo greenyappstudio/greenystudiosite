@@ -94,15 +94,23 @@ function injectFooter() {
     </div>
   `;
   document.body.appendChild(footer);
+["bg-glow bg-glow--green", "bg-glow bg-glow--teal", "bg-glow bg-glow--blue"].forEach((cls) => {
+  const el = document.createElement("div");
+  el.className = cls;
+  document.body.prepend(el);
+});
+
 injectLiveChat();
 }
 
 function injectLiveChat() {
+  if (document.querySelector(".live-chat")) return;
+
   const chat = document.createElement("div");
   chat.className = "live-chat";
 
   chat.innerHTML = `
-    <button class="live-chat-btn" onclick="toggleLiveChat()">
+    <button class="live-chat-btn" id="liveChatButton" type="button">
       <span class="live-chat-dot"></span>
       <span>Live Chat</span>
     </button>
@@ -113,7 +121,7 @@ function injectLiveChat() {
           <strong>Greeny Support</strong>
           <small>Usually replies soon</small>
         </div>
-        <button onclick="toggleLiveChat()">×</button>
+        <button id="liveChatClose" type="button">×</button>
       </div>
 
       <div class="live-chat-body">
@@ -132,9 +140,17 @@ function injectLiveChat() {
   `;
 
   document.body.appendChild(chat);
+
+  const btn = document.getElementById("liveChatButton");
+  const close = document.getElementById("liveChatClose");
+  const box = document.getElementById("liveChatBox");
+
+  btn.addEventListener("click", function () {
+    box.classList.toggle("show");
+  });
+
+  close.addEventListener("click", function () {
+    box.classList.remove("show");
+  });
 }
 
-function toggleLiveChat() {
-  const box = document.getElementById("liveChatBox");
-  if (box) box.classList.toggle("show");
-}
