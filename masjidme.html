@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MasjidMe - Greeny App Studio</title>
+  <meta
+    name="description"
+    content="MasjidMe is an upcoming mosque network and Muslim community platform by Greeny App Studio, featuring prayer times, nearby masjids, announcements, sermons, classes, volunteering, Islamic content, and privacy-first community features."
+  />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .mm-hero {
+      padding: 76px 0 54px;
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 56px;
+      align-items: center;
+    }
+    .mm-hero h1 { font-size: clamp(44px, 6vw, 78px); margin-bottom: 22px; }
+    .mm-hero-card {
+      background: linear-gradient(145deg, rgba(20,255,130,0.08), rgba(255,201,77,0.07));
+      border: 1px solid rgba(20,255,130,0.18);
+      border-radius: var(--r-xl);
+      padding: 34px;
+      box-shadow: 0 30px 90px rgba(0,0,0,0.45), 0 0 60px rgba(20,255,130,0.08);
+      position: relative;
+      overflow: hidden;
+    }
+    .mm-hero-card::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background: radial-gradient(circle at 30% 20%, rgba(255,201,77,0.12), transparent 35%), radial-gradient(circle at 80% 70%, rgba(0,229,200,0.12), transparent 35%);
+      pointer-events: none;
+    }
+    .mm-logo-large {
+      width: 120px;
+      height: 120px;
+      border-radius: 30px;
+      overflow: hidden;
+      background: rgba(0,0,0,0.35);
+      border: 1px solid rgba(255,255,255,0.14);
+      margin-bottom: 24px;
+      position: relative;
+      z-index: 1;
+    }
+    .mm-logo-large img { width: 100%; height: 100%; object-fit: cover; }
+    .mm-card-title { position: relative; z-index: 1; font-size: 28px; font-weight: 700; margin-bottom: 10px; }
+    .mm-card-text { position: relative; z-index: 1; color: var(--text2); line-height: 1.8; font-size: 15px; }
+    .mm-status-row { display:flex; gap:10px; flex-wrap:wrap; margin-top:24px; position:relative; z-index:1; }
+    .mm-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+    .mm-feature {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      padding: 28px;
+      transition: all .25s var(--ease);
+    }
+    .mm-feature:hover { transform: translateY(-4px); border-color: rgba(20,255,130,0.25); }
+    .mm-feature-icon {
+      width: 54px;
+      height: 54px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(20,255,130,0.08);
+      color: var(--g1);
+      font-weight: 800;
+      margin-bottom: 18px;
+    }
+    .mm-feature h3 { font-size: 18px; margin-bottom: 10px; }
+    .mm-feature p { font-size: 14px; color: var(--text2); line-height: 1.75; }
+    .mm-two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      align-items: start;
+    }
+    .mm-panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      padding: 32px;
+    }
+    .mm-panel h3 { font-size: 22px; margin-bottom: 16px; }
+    .mm-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .mm-list li { color: var(--text2); font-size: 14px; line-height: 1.7; display: flex; gap: 10px; }
+    .mm-list li::before { content: "✓"; color: var(--g1); font-weight: 700; flex-shrink: 0; }
+    .privacy-block {
+      background: linear-gradient(135deg, rgba(20,255,130,0.06), rgba(255,201,77,0.04));
+      border: 1px solid rgba(20,255,130,0.16);
+      border-radius: var(--r-xl);
+      padding: 42px;
+    }
+    .privacy-block h2 { font-size: clamp(28px, 4vw, 46px); margin-bottom: 14px; }
+    .privacy-block h3 { font-size: 18px; margin: 28px 0 10px; }
+    .privacy-block p, .privacy-block li { color: var(--text2); line-height: 1.85; font-size: 15px; }
+    .privacy-block ul { padding-left: 20px; margin-top: 10px; }
+    .privacy-block li { margin-bottom: 8px; }
+    .mm-cta {
+      text-align: center;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-xl);
+      padding: 56px 28px;
+    }
+    @media (max-width: 900px) {
+      .mm-hero, .mm-two-col { grid-template-columns: 1fr; }
+      .mm-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      .mm-grid { grid-template-columns: 1fr; }
+      .privacy-block { padding: 28px 22px; }
+    }
+  </style>
+</head>
+<body>
+  <script src="shared.js"></script>
+  <script>injectNav('masjidme');</script>
+
+  <main>
+    <section class="section" style="padding-top:38px;">
+      <div class="wrap">
+        <div class="mm-hero">
+          <div class="anim-fadeup">
+            <div class="eyebrow">Coming Soon</div>
+            <h1>MasjidMe — <span class="gradient-text">Your Mosque, Closer.</span></h1>
+            <p class="lead">
+              MasjidMe is a modern mosque network and Muslim community platform designed to help users connect with nearby masjids, prayer times, announcements, sermons, classes, volunteering, halal places, and Islamic services from one trusted app.
+            </p>
+            <div class="hero-buttons">
+              <a href="#features" class="btn btn-primary btn-lg">Explore Features</a>
+              <a href="#privacy" class="btn btn-ghost btn-lg">Privacy Policy</a>
+            </div>
+          </div>
+          <div class="mm-hero-card anim-fadeup anim-delay-2">
+            <div class="mm-logo-large"><img src="images/masjidme.png" alt="MasjidMe icon" /></div>
+            <div class="mm-card-title">Network of Mosques</div>
+            <p class="mm-card-text">
+              Built for everyday Muslims, mosque admins, community volunteers, and organizations that want a clean digital bridge between masjid and jamaah.
+            </p>
+            <div class="mm-status-row">
+              <span class="tag tag-green">Prayer Times</span>
+              <span class="tag tag-teal">Nearby Masjid</span>
+              <span class="tag tag-amber">Community</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section id="features" class="section">
+      <div class="wrap">
+        <div style="text-align:center;margin-bottom:52px;" class="anim-fadeup">
+          <div class="eyebrow">MasjidMe Features</div>
+          <h2 class="section-title">Everything around your <span class="gradient-text">masjid life.</span></h2>
+          <p class="lead" style="margin-inline:auto;text-align:center;">A complete feature direction for mosque discovery, Islamic content, community alerts, and admin-controlled mosque updates.</p>
+        </div>
+
+        <div class="mm-grid">
+          <div class="mm-feature anim-fadeup"><div class="mm-feature-icon">01</div><h3>Nearby Masjid Map</h3><p>Users can discover nearby mosques, view mosque profiles, opening information, contact details, distance, directions, and community information through a map-focused experience.</p></div>
+          <div class="mm-feature anim-fadeup anim-delay-1"><div class="mm-feature-icon">02</div><h3>Prayer Times & Azan</h3><p>Prayer time display with notification planning for Fajr, Dhuhr, Asr, Maghrib, and Isha. Designed to support local reminders and mosque-centered prayer information.</p></div>
+          <div class="mm-feature anim-fadeup anim-delay-2"><div class="mm-feature-icon">03</div><h3>Masjid Announcements</h3><p>Mosques can publish short updates such as program notices, Friday announcements, community reminders, class cancellations, donation alerts, and emergency notices.</p></div>
+          <div class="mm-feature anim-fadeup"><div class="mm-feature-icon">04</div><h3>Events & Classes</h3><p>Community members can find kuliah, classes, lectures, youth programs, family events, Ramadan programs, volunteering activities, and registration information.</p></div>
+          <div class="mm-feature anim-fadeup anim-delay-1"><div class="mm-feature-icon">05</div><h3>Sermons & Khutbah</h3><p>Masjid admins can share khutbah, sermons, audio recordings, YouTube live links, and useful Islamic reminders so users can revisit content after the program.</p></div>
+          <div class="mm-feature anim-fadeup anim-delay-2"><div class="mm-feature-icon">06</div><h3>Quran & Doa</h3><p>The Islamic library direction includes Quran reading, translation, recitation support, selected doa, Malay/Rumi support, and useful references for daily Muslim life.</p></div>
+          <div class="mm-feature anim-fadeup"><div class="mm-feature-icon">07</div><h3>Halal Places</h3><p>Users can discover halal restaurants and places, with future support for verified listings, community reporting, and trusted information connected to local needs.</p></div>
+          <div class="mm-feature anim-fadeup anim-delay-1"><div class="mm-feature-icon">08</div><h3>Certificates</h3><p>The Sijil Saya feature can generate participation certificates for mosque classes or events, with downloadable/shareable certificate designs and MasjidMe branding.</p></div>
+          <div class="mm-feature anim-fadeup anim-delay-2"><div class="mm-feature-icon">09</div><h3>Admin & Superadmin</h3><p>Masjid admins manage mosque content, while superadmin approval helps keep mosque profiles trusted, organized, and suitable for a larger mosque network.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-sm">
+      <div class="wrap">
+        <div class="mm-two-col">
+          <div class="mm-panel anim-fadeup">
+            <h3>For Users</h3>
+            <ul class="mm-list">
+              <li>Find the nearest mosque and get directions quickly.</li>
+              <li>Check prayer times and receive optional reminders.</li>
+              <li>Read mosque announcements and community updates.</li>
+              <li>Discover classes, events, sermons, and volunteer opportunities.</li>
+              <li>Access Islamic content such as Quran, doa, and useful reminders.</li>
+            </ul>
+          </div>
+          <div class="mm-panel anim-fadeup anim-delay-1">
+            <h3>For Mosque Admins</h3>
+            <ul class="mm-list">
+              <li>Manage mosque profile information and public details.</li>
+              <li>Publish announcements, programs, events, and class details.</li>
+              <li>Upload or link sermons, khutbah audio, and live streams.</li>
+              <li>Coordinate volunteering, donations, food aid, and feedback modules.</li>
+              <li>Use approval workflows to keep information trusted and organized.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="privacy" class="section">
+      <div class="wrap">
+        <div class="privacy-block anim-fadeup">
+          <div class="eyebrow">MasjidMe Privacy Policy</div>
+          <h2>Privacy and data handling for MasjidMe</h2>
+          <p>
+            MasjidMe is designed as a community and mosque information platform. We aim to collect only the information needed to provide features such as nearby masjid discovery, prayer reminders, announcements, mosque profiles, events, classes, sermons, feedback, and admin tools.
+          </p>
+
+          <h3>Information MasjidMe may use</h3>
+          <ul>
+            <li><strong>Location permission:</strong> Used only when you choose features such as nearby masjid discovery, map view, distance calculation, or directions.</li>
+            <li><strong>Notification permission:</strong> Used for optional prayer reminders, mosque announcements, event reminders, class updates, or community alerts.</li>
+            <li><strong>Account/admin information:</strong> Mosque admins or superadmins may provide names, emails, mosque role information, and mosque profile data for approval and management.</li>
+            <li><strong>Mosque and community content:</strong> Announcements, events, classes, sermons, certificate records, volunteer posts, halal listings, and feedback may be stored to provide the app experience.</li>
+            <li><strong>App diagnostics:</strong> Crash logs and performance data may be used to improve stability and fix bugs.</li>
+          </ul>
+
+          <h3>How MasjidMe uses information</h3>
+          <ul>
+            <li>To show nearby mosques and relevant local information.</li>
+            <li>To send optional reminders and notifications chosen by the user.</li>
+            <li>To allow mosque admins to publish trusted community content.</li>
+            <li>To improve app safety, reliability, moderation, and user experience.</li>
+            <li>To respond to support, privacy, or account-related requests.</li>
+          </ul>
+
+          <h3>What MasjidMe does not do</h3>
+          <ul>
+            <li>MasjidMe does not sell personal data.</li>
+            <li>MasjidMe does not collect payment card details directly; payments, if added, are handled by Apple, Google, or approved payment providers.</li>
+            <li>MasjidMe does not use precise location in the background unless a clear future feature requires it and the user gives permission.</li>
+            <li>MasjidMe does not publish private user information as public mosque content without a user/admin action.</li>
+          </ul>
+
+          <h3>Third-party services</h3>
+          <p>
+            MasjidMe may use services such as Firebase, Google Maps, Google Places, push notification services, app store billing systems, and Islamic content APIs. These services may process limited technical data according to their own privacy policies.
+          </p>
+
+          <h3>Children and families</h3>
+          <p>
+            MasjidMe is intended as a family-friendly Islamic community app. If children use the app, parents or guardians should supervise usage, especially where community content, location, or online features are involved.
+          </p>
+
+          <h3>Contact</h3>
+          <p>
+            For privacy questions, mosque profile concerns, admin access issues, or deletion requests, contact Greeny App Studio at <a href="mailto:support@greenystudio.site" style="color:var(--g1);">support@greenystudio.site</a>.
+          </p>
+          <div style="margin-top:28px;display:flex;gap:12px;flex-wrap:wrap;">
+            <a href="privacy.html" class="btn btn-primary">View Main Privacy Policy</a>
+            <a href="mailto:support@greenystudio.site?subject=MasjidMe%20Privacy%20Question" class="btn btn-ghost">Contact Privacy Support</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-sm">
+      <div class="wrap">
+        <div class="mm-cta anim-fadeup">
+          <div class="eyebrow">Greeny App Studio</div>
+          <h2 class="section-title">MasjidMe is coming soon.</h2>
+          <p class="lead" style="margin-inline:auto;text-align:center;margin-bottom:28px;">A polished mosque network platform built to bring users closer to their masjid, community, and daily Islamic life.</p>
+          <a href="mailto:support@greenystudio.site?subject=MasjidMe%20App%20Inquiry" class="btn btn-primary btn-lg">Contact About MasjidMe</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>injectFooter();</script>
+</body>
+</html>
