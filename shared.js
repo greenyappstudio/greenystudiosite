@@ -17,6 +17,7 @@ function injectNav(activePage) {
       <ul class="nav-links">
         <li><a href="index.html" ${activePage === "home" ? 'class="active"' : ""}>Home</a></li>
         <li><a href="apps.html" ${activePage === "apps" ? 'class="active"' : ""}>Our Apps</a></li>
+        <li><a href="masjidme.html" ${activePage === "masjidme" ? 'class="active"' : ""}>MasjidMe</a></li>
         <li><a href="privacy.html" ${activePage === "privacy" ? 'class="active"' : ""}>Privacy Policy</a></li>
         <li><a href="mailto:support@greenystudio.site">Contact</a></li>
       </ul>
@@ -60,6 +61,7 @@ function injectFooter() {
             <li><a href="apps.html#greeny-color">Greeny Color</a></li>
             <li><a href="apps.html#easymath">EasyMath Kids</a></li>
             <li><a href="apps.html#clipmy">ClipMy</a></li>
+            <li><a href="masjidme.html">MasjidMe</a></li>
           </ul>
         </div>
         <div class="footer-col">
@@ -67,6 +69,7 @@ function injectFooter() {
           <ul>
             <li><a href="index.html">Home</a></li>
             <li><a href="apps.html">All Apps</a></li>
+            <li><a href="masjidme.html">MasjidMe</a></li>
             <li><a href="privacy.html">Privacy Policy</a></li>
             <li><a href="mailto:support@greenystudio.site">Contact</a></li>
           </ul>
@@ -77,7 +80,7 @@ function injectFooter() {
             <li><a href="privacy.html">Privacy Policy</a></li>
             <li><a href="privacy.html#data">Data Collection</a></li>
             <li><a href="privacy.html#children">Children's Privacy</a></li>
-            <li><a href="privacy.html#contact">Policy Contact</a></li>
+            <li><a href="masjidme.html#privacy">MasjidMe Privacy</a></li>
           </ul>
         </div>
       </div>
