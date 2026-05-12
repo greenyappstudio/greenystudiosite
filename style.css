@@ -475,3 +475,13 @@ body::after {
   z-index: 0;
 }
 
+@media (max-width: 768px) {
+  iframe[title*="chat"],
+  iframe[src*="tawk.to"],
+  .tawk-min-container,
+  .tawk-button {
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
+}

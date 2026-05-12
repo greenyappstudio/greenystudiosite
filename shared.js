@@ -97,33 +97,33 @@ function injectFooter() {
 
 }
 
-/* ================================
-   Tawk.to Live Chat
-================================ */
 
 /* ================================
    Tawk.to Live Chat
    Desktop only
 ================================ */
 
-const isMobile =
-  /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(
-    navigator.userAgent
-  );
+(function () {
+  const isMobileScreen = window.innerWidth <= 768;
 
-if (!isMobile) {
-  var Tawk_API = Tawk_API || {},
-      Tawk_LoadStart = new Date();
+  if (isMobileScreen) {
+    window.Tawk_API = window.Tawk_API || {};
+    window.Tawk_API.onLoad = function () {
+      window.Tawk_API.hideWidget();
+    };
+    return;
+  }
 
-  (function () {
-    var s1 = document.createElement("script"),
-        s0 = document.getElementsByTagName("script")[0];
+  var Tawk_API = window.Tawk_API || {};
+  var Tawk_LoadStart = new Date();
 
-    s1.async = true;
-    s1.src = 'https://embed.tawk.to/6a02c062ee7ca01c362e93ee/1jodbv0de';
-    s1.charset = 'UTF-8';
-    s1.setAttribute('crossorigin', '*');
+  var s1 = document.createElement("script");
+  var s0 = document.getElementsByTagName("script")[0];
 
-    s0.parentNode.insertBefore(s1, s0);
-  })();
-}
+  s1.async = true;
+  s1.src = "https://embed.tawk.to/6a02c062ee7ca01c362e93ee/1jodbv0de";
+  s1.charset = "UTF-8";
+  s1.setAttribute("crossorigin", "*");
+
+  s0.parentNode.insertBefore(s1, s0);
+})();
