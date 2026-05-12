@@ -43,7 +43,7 @@ function injectFooter() {
       <div class="footer-grid">
         <div class="footer-brand">
           <div style="display:flex;align-items:center;gap:12px;margin-bottom:4px;">
-            <div class="nav-logo" style="width:40px;height:40px;font-size:18px;">
+           <div class="nav-logo" style="width:58px;height:58px;font-size:18px;">
               <img src="images/greenyicon2.png" alt="Greeny App Studio logo" />
             </div>
             <span style="font-size:18px;font-weight:700;">Greeny App Studio</span>
