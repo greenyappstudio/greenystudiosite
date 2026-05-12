@@ -94,63 +94,24 @@ function injectFooter() {
     </div>
   `;
   document.body.appendChild(footer);
-["bg-glow bg-glow--green", "bg-glow bg-glow--teal", "bg-glow bg-glow--blue"].forEach((cls) => {
-  const el = document.createElement("div");
-  el.className = cls;
-  document.body.prepend(el);
-});
 
-injectLiveChat();
 }
 
-function injectLiveChat() {
-  if (document.querySelector(".live-chat")) return;
+/* ================================
+   Tawk.to Live Chat
+================================ */
 
-  const chat = document.createElement("div");
-  chat.className = "live-chat";
+var Tawk_API = Tawk_API || {}, 
+    Tawk_LoadStart = new Date();
 
-  chat.innerHTML = `
-    <button class="live-chat-btn" id="liveChatButton" type="button">
-      <span class="live-chat-dot"></span>
-      <span>Live Chat</span>
-    </button>
+(function () {
+  var s1 = document.createElement("script"),
+      s0 = document.getElementsByTagName("script")[0];
 
-    <div class="live-chat-box" id="liveChatBox">
-      <div class="live-chat-header">
-        <div>
-          <strong>Greeny Support</strong>
-          <small>Usually replies soon</small>
-        </div>
-        <button id="liveChatClose" type="button">×</button>
-      </div>
+  s1.async = true;
+  s1.src = 'https://embed.tawk.to/6a02c062ee7ca01c362e93ee/1jodbv0de';
+  s1.charset = 'UTF-8';
+  s1.setAttribute('crossorigin', '*');
 
-      <div class="live-chat-body">
-        <p><strong>Assalamu Alaikum 👋</strong></p>
-        <p>Need help with Greeny Apps or MasjidMe?</p>
-
-        <a class="live-chat-option" href="mailto:support@greenystudio.site?subject=Support%20Request">
-          Email Support
-        </a>
-
-        <a class="live-chat-option" href="mailto:support@greenystudio.site?subject=MasjidMe%20Question">
-          Ask About MasjidMe
-        </a>
-      </div>
-    </div>
-  `;
-
-  document.body.appendChild(chat);
-
-  const btn = document.getElementById("liveChatButton");
-  const close = document.getElementById("liveChatClose");
-  const box = document.getElementById("liveChatBox");
-
-  btn.addEventListener("click", function () {
-    box.classList.toggle("show");
-  });
-
-  close.addEventListener("click", function () {
-    box.classList.remove("show");
-  });
-}
-
+  s0.parentNode.insertBefore(s1, s0);
+})();
