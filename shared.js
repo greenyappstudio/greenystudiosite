@@ -7,7 +7,7 @@ function injectNav(activePage) {
     <div class="nav-inner">
       <a href="index.html" class="nav-brand">
         <div class="nav-logo">
-          <img src="images/greenyicon.png" alt="Greeny App Studio logo" />
+          <img src="images/greenyicon2.png" alt="Greeny App Studio logo" />
         </div>
         <div class="nav-brand-text">
           <span class="studio-label">Greeny App Studio</span>
@@ -44,7 +44,7 @@ function injectFooter() {
         <div class="footer-brand">
           <div style="display:flex;align-items:center;gap:12px;margin-bottom:4px;">
             <div class="nav-logo" style="width:40px;height:40px;font-size:18px;">
-              <img src="images/greenyicon.png" alt="Greeny App Studio logo" />
+              <img src="images/greenyicon2.png" alt="Greeny App Studio logo" />
             </div>
             <span style="font-size:18px;font-weight:700;">Greeny App Studio</span>
           </div>
