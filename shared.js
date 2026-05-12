@@ -94,4 +94,47 @@ function injectFooter() {
     </div>
   `;
   document.body.appendChild(footer);
+injectLiveChat();
+}
+
+function injectLiveChat() {
+  const chat = document.createElement("div");
+  chat.className = "live-chat";
+
+  chat.innerHTML = `
+    <button class="live-chat-btn" onclick="toggleLiveChat()">
+      <span class="live-chat-dot"></span>
+      <span>Live Chat</span>
+    </button>
+
+    <div class="live-chat-box" id="liveChatBox">
+      <div class="live-chat-header">
+        <div>
+          <strong>Greeny Support</strong>
+          <small>Usually replies soon</small>
+        </div>
+        <button onclick="toggleLiveChat()">×</button>
+      </div>
+
+      <div class="live-chat-body">
+        <p><strong>Assalamu Alaikum 👋</strong></p>
+        <p>Need help with Greeny Apps or MasjidMe?</p>
+
+        <a class="live-chat-option" href="mailto:support@greenystudio.site?subject=Support%20Request">
+          Email Support
+        </a>
+
+        <a class="live-chat-option" href="mailto:support@greenystudio.site?subject=MasjidMe%20Question">
+          Ask About MasjidMe
+        </a>
+      </div>
+    </div>
+  `;
+
+  document.body.appendChild(chat);
+}
+
+function toggleLiveChat() {
+  const box = document.getElementById("liveChatBox");
+  if (box) box.classList.toggle("show");
 }
